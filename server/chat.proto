@@ -1,0 +1,16 @@
+syntax="proto3";
+package chat;
+
+message ChatMessage{
+    string User=1;
+    string message=2;
+    string reciptent =3 ;
+    bool is_private=4;
+}
+
+service ChatService{
+    //Bi directional 
+    rpc Chat(stream ChatMessage) returns (stream ChatMessage);
+    //unary 
+    rpc SendPrivateMessage(ChatMessage) returns (ChatMessage);
+}
